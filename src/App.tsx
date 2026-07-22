@@ -3,6 +3,7 @@ import { CATALOG, deaccent } from './data'
 import { CATEGORIES, type CategoryId, type Platform } from './types'
 import { Combobox } from './components/Combobox'
 import { EntryDetail } from './components/EntryDetail'
+import { HomePage } from './components/HomePage'
 
 type Theme = 'light' | 'dark'
 
@@ -21,7 +22,8 @@ export default function App() {
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<CategoryId | ''>('')
   const [platform, setPlatform] = useState<Platform | ''>('')
-  const [selectedId, setSelectedId] = useState<string>(() => idFromHash() || CATALOG[0].id)
+  // Chuỗi rỗng = đang ở trang chủ.
+  const [selectedId, setSelectedId] = useState<string>(() => idFromHash())
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -31,7 +33,7 @@ export default function App() {
   useEffect(() => {
     const onHash = () => {
       const id = idFromHash()
-      if (id && CATALOG.some((e) => e.id === id)) setSelectedId(id)
+      if (!id || CATALOG.some((e) => e.id === id)) setSelectedId(id)
     }
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
@@ -40,7 +42,10 @@ export default function App() {
   const select = (id: string) => {
     setSelectedId(id)
     window.location.hash = `/${id}`
+    document.querySelector('.main')?.scrollTo({ top: 0 })
   }
+
+  const goHome = () => select('')
 
   const visible = useMemo(() => {
     const q = deaccent(query.trim())
@@ -74,10 +79,10 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-head">
-        <div className="brand">
+        <button type="button" className="brand" onClick={goHome} title="Về trang chủ">
           <span className="brand-mark">UI</span>
           Từ điển UI — Element &amp; Component
-        </div>
+        </button>
         <div className="head-spacer" />
         <span className="head-stat">
           {visible.length}/{CATALOG.length} component
@@ -127,6 +132,18 @@ export default function App() {
         </div>
 
         <nav className="sidebar-list">
+          <button
+            type="button"
+            className="side-item is-home"
+            aria-current={selectedId === ''}
+            onClick={goHome}
+          >
+            <span aria-hidden>⌂</span>
+            <span className="side-item-names">
+              <span className="side-item-en">Trang chủ</span>
+              <span className="side-item-vi">Toàn bộ {CATALOG.length} component</span>
+            </span>
+          </button>
           {grouped.map((g) => (
             <div key={g.category.id}>
               <p className="side-group-head">
@@ -166,10 +183,12 @@ export default function App() {
         {selected ? (
           <EntryDetail entry={selected} key={selected.id} />
         ) : (
-          <div className="empty-state">
-            <strong>Chưa chọn component</strong>
-            <span>Chọn một mục ở cột bên trái để xem demo và giải thích.</span>
-          </div>
+          <HomePage
+            entries={visible}
+            total={CATALOG.length}
+            onOpen={select}
+            onPickCategory={setCategory}
+          />
         )}
       </main>
     </div>

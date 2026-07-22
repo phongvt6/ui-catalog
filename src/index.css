@@ -115,9 +115,20 @@ pre {
   display: flex;
   align-items: center;
   gap: 9px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--fg);
+  font: inherit;
   font-weight: 650;
   letter-spacing: -0.01em;
   white-space: nowrap;
+  cursor: pointer;
+}
+
+.brand:hover {
+  background: var(--surface-2);
 }
 
 .brand-mark {
@@ -576,6 +587,210 @@ pre {
   padding: 40px;
   color: var(--fg-subtle);
   text-align: center;
+}
+
+/* ==========================================================================
+   Trang chủ — thư viện toàn bộ component
+   ========================================================================== */
+.hp {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 26px 28px 80px;
+}
+
+.hp-hero {
+  max-width: 720px;
+  margin-bottom: 26px;
+}
+
+.hp-hero h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 690;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+}
+
+.hp-hero p {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 15px;
+}
+
+.hp-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.hp-jump a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--fg-muted);
+  font-size: 12.5px;
+  text-decoration: none;
+}
+
+.hp-jump a:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.hp-jump span {
+  color: var(--fg-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+.hp-group {
+  margin-top: 34px;
+  scroll-margin-top: 16px;
+}
+
+.hp-group-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hp-group-head h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 660;
+  letter-spacing: -0.015em;
+}
+
+.hp-group-en {
+  color: var(--fg-subtle);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.hp-group-head p {
+  margin: 2px 0 0;
+  color: var(--fg-muted);
+  font-size: 13px;
+}
+
+.hp-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+}
+
+.hp-card {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.hp-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+/* Sân khấu demo thu nhỏ — cắt gọn để mọi thẻ cao bằng nhau */
+.hp-stage {
+  position: relative;
+  overflow: hidden;
+  height: 196px;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--surface-2);
+  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.hp-stage-inner {
+  display: grid;
+  width: 128.2%;
+  height: 128.2%;
+  place-items: center;
+  padding: 16px;
+  transform: scale(0.78);
+  transform-origin: top left;
+}
+
+/* Mục chỉ có bản mobile — khung rút gọn, giữ chữ đủ lớn để đọc */
+.hp-mini-phone {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  width: 232px;
+  height: 202px;
+  padding: 11px;
+  border: 1px solid var(--border-strong);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.hp-stage-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 26px 22px;
+}
+
+.hp-card-body {
+  flex: 1;
+  padding: 12px 15px 0;
+}
+
+.hp-card-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 640;
+  letter-spacing: -0.01em;
+}
+
+.hp-card-vi {
+  margin: 1px 0 0;
+  color: var(--fg-muted);
+  font-size: 13px;
+}
+
+.hp-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 11px 10px;
+}
+
+.hp-card-foot a {
+  text-decoration: none;
+}
+
+.side-item.is-home {
+  margin-bottom: 4px;
+}
+
+@media (max-width: 900px) {
+  .hp {
+    padding: 18px 16px 60px;
+  }
+
+  .hp-hero h1 {
+    font-size: 23px;
+  }
+
+  .hp-group-head {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
 
 /* ==========================================================================

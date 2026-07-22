@@ -98,7 +98,7 @@ function TreeBranch({
 }
 
 function TreeDemo() {
-  const [open, setOpen] = useState(new Set(['mien-nam', 'dong-nai']))
+  const [open, setOpen] = useState(new Set(['mien-nam', 'hcm']))
   const [selected, setSelected] = useState('cn-07')
   return (
     <div className="d-card d-panel" style={{ maxWidth: 320 }}>

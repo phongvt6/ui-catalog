@@ -2,28 +2,28 @@ import { useEffect, useState } from 'react'
 import type { CatalogEntry, Platform } from '../types'
 import { CATEGORIES, PLATFORM_LABEL } from '../types'
 import { PhoneFrame } from './PhoneFrame'
+import { copyText } from '../lib/clipboard'
 
 type View = 'preview' | 'code'
 
 export function EntryDetail({ entry }: { entry: CatalogEntry }) {
   const [platform, setPlatform] = useState<Platform>(entry.platforms[0])
   const [view, setView] = useState<View>('preview')
-  const [copied, setCopied] = useState(false)
+  const [copyState, setCopyState] = useState<'idle' | 'done' | 'fail'>('idle')
 
   // Đổi component thì reset về nền tảng đầu tiên mà nó hỗ trợ.
   useEffect(() => {
     setPlatform(entry.platforms[0])
     setView('preview')
-    setCopied(false)
+    setCopyState('idle')
   }, [entry])
 
   const category = CATEGORIES.find((c) => c.id === entry.category)
   const supports = (p: Platform) => entry.platforms.includes(p)
 
   const copy = async () => {
-    await navigator.clipboard.writeText(entry.code)
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1800)
+    setCopyState((await copyText(entry.code)) ? 'done' : 'fail')
+    window.setTimeout(() => setCopyState('idle'), 1800)
   }
 
   const demoNode = platform === 'mobile' ? (entry.mobileDemo ?? entry.demo)() : entry.demo()
@@ -81,7 +81,11 @@ export function EntryDetail({ entry }: { entry: CatalogEntry }) {
           </div>
           {view === 'code' && (
             <button type="button" className="d-btn is-secondary is-sm" onClick={copy}>
-              {copied ? '✓ Đã chép' : 'Sao chép'}
+              {copyState === 'done'
+                ? '✓ Đã chép'
+                : copyState === 'fail'
+                  ? '✕ Không chép được'
+                  : 'Sao chép'}
             </button>
           )}
         </div>

@@ -36,6 +36,10 @@ npm run lint
 
 ## Cách dùng
 
+- **Trang chủ** (`#/`, hoặc bấm logo) là thư viện toàn bộ 80 component xếp thành
+  lưới thẻ theo nhóm. Mỗi thẻ là một **demo chạy thật** — bấm, gõ, kéo ngay trên
+  trang chủ, không cần mở trang chi tiết. Thẻ chỉ có demo + tên; diễn giải, công
+  dụng và đoạn code nằm ở trang chi tiết.
 - **Tìm kiếm** ở đầu cột trái: tìm theo tên Anh/Việt, alias, và cả nội dung mô
   tả. Gõ **không dấu** vẫn ra kết quả (`o nhap` → *Ô nhập văn bản*).
 - **Hai bộ lọc** (nhóm, nền tảng) đều là combobox gõ-để-tìm, có ↑ ↓ Enter Esc.
@@ -92,9 +96,12 @@ src/
     overlay.tsx          Lớp phủ
     mediaMobile.tsx      Media & tệp + Đặc thù mobile
     mediaAdvanced.tsx    Video, bản đồ, thanh nút cố định đáy, hỏi quyền truy cập
+  lib/
+    clipboard.ts         copyText() — có phương án dự phòng khi clipboard bị chặn
   components/
     Combobox.tsx         Dropdown gõ-để-tìm dùng cho bộ lọc
     PhoneFrame.tsx       Khung điện thoại bọc demo mobile
+    HomePage.tsx         Trang chủ: lưới thẻ demo sống của toàn bộ component
     EntryDetail.tsx      Trang chi tiết một component
   App.tsx                Shell: header + sidebar lọc + main
   index.css              Design token + shell + thư viện primitive `.d-*` cho demo

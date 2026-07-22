@@ -14,7 +14,36 @@ Nhóm thay đổi dùng đúng 6 nhãn sau: **Thêm mới** (tính năng mới) 
 
 ## [Chưa phát hành]
 
-_(chưa có thay đổi nào)_
+### Thêm mới
+
+- **Trang chủ dạng thư viện** (`#/`) — liệt kê toàn bộ 80 component thành lưới
+  thẻ, gom theo 10 nhóm. Mỗi thẻ chứa **demo chạy thật, bấm/gõ được ngay tại
+  chỗ** (không phải ảnh tĩnh), kèm tên Anh/Việt và link *Xem chi tiết*. Thẻ cố ý
+  giữ gọn — phần diễn giải, công dụng và code nằm ở trang chi tiết.
+  - Dải chip nhảy nhanh tới từng nhóm, kèm số lượng.
+  - Nút *Chỉ xem nhóm này* đặt luôn bộ lọc nhóm ở sidebar.
+  - Trang chủ tôn trọng bộ lọc và ô tìm kiếm ở sidebar.
+  - Demo chỉ dựng khi thẻ lọt vào tầm nhìn (`IntersectionObserver`) — tránh
+    chạy 80 demo và hàng loạt `setInterval` cùng lúc.
+- Mục **Trang chủ** ở đầu sidebar; logo trên header bấm được để về trang chủ.
+- `src/lib/clipboard.ts` — hàm `copyText` dùng chung.
+
+### Thay đổi
+
+- Vào app không kèm hash thì mở **trang chủ**, thay vì tự nhảy vào component
+  đầu tiên như trước.
+- Chọn một component sẽ cuộn khung nội dung về đầu trang.
+
+### Sửa lỗi
+
+- **Nút sao chép code thất bại trong im lặng.** `navigator.clipboard.writeText`
+  có thể bị từ chối (không phải secure context, tài liệu không được focus) —
+  trước đây promise bị bỏ rơi, giao diện không báo gì cả. Nay có phương án dự
+  phòng bằng `document.execCommand('copy')` và trạng thái *✕ Không chép được*
+  khi cả hai cách đều hỏng. Áp dụng cho cả trang chủ lẫn trang chi tiết.
+- **Demo Cây phân cấp không mở sẵn cấp con.** Sót lại từ lần đổi dữ liệu mẫu ở
+  0.3.0: `useState` vẫn mở nút `dong-nai` trong khi id đã đổi thành `hcm`, làm
+  nhánh TP. Hồ Chí Minh hiện ra ở trạng thái đóng.
 
 ## [0.3.0] – 2026-07-22
 
