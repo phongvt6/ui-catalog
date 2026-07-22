@@ -4,6 +4,7 @@ import { CATEGORIES, type CategoryId, type Platform } from './types'
 import { Combobox } from './components/Combobox'
 import { EntryDetail } from './components/EntryDetail'
 import { HomePage } from './components/HomePage'
+import { ChangelogPage } from './components/ChangelogPage'
 
 type Theme = 'light' | 'dark'
 
@@ -16,6 +17,9 @@ function initialTheme(): Theme {
 function idFromHash(): string {
   return decodeURIComponent(window.location.hash.replace(/^#\/?/, ''))
 }
+
+/** Các trang không phải component: '' là trang chủ. */
+const STATIC_PAGES = ['', 'changelog']
 
 export default function App() {
   const [theme, setTheme] = useState<Theme>(initialTheme)
@@ -33,7 +37,7 @@ export default function App() {
   useEffect(() => {
     const onHash = () => {
       const id = idFromHash()
-      if (!id || CATALOG.some((e) => e.id === id)) setSelectedId(id)
+      if (STATIC_PAGES.includes(id) || CATALOG.some((e) => e.id === id)) setSelectedId(id)
     }
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
@@ -144,6 +148,18 @@ export default function App() {
               <span className="side-item-vi">Toàn bộ {CATALOG.length} component</span>
             </span>
           </button>
+          <button
+            type="button"
+            className="side-item is-home"
+            aria-current={selectedId === 'changelog'}
+            onClick={() => select('changelog')}
+          >
+            <span aria-hidden>✦</span>
+            <span className="side-item-names">
+              <span className="side-item-en">Nhật ký thay đổi</span>
+              <span className="side-item-vi">App có gì mới</span>
+            </span>
+          </button>
           {grouped.map((g) => (
             <div key={g.category.id}>
               <p className="side-group-head">
@@ -180,7 +196,9 @@ export default function App() {
       </aside>
 
       <main className="main">
-        {selected ? (
+        {selectedId === 'changelog' ? (
+          <ChangelogPage />
+        ) : selected ? (
           <EntryDetail entry={selected} key={selected.id} />
         ) : (
           <HomePage

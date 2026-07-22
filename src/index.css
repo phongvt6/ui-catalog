@@ -794,6 +794,154 @@ pre {
 }
 
 /* ==========================================================================
+   Trang nhật ký thay đổi
+   ========================================================================== */
+.cl {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 28px 32px 90px;
+}
+
+.cl-head {
+  margin-bottom: 8px;
+}
+
+.cl-head h1 {
+  margin: 4px 0 0;
+  font-size: 28px;
+  font-weight: 680;
+  letter-spacing: -0.02em;
+}
+
+.cl-p {
+  margin: 0 0 12px;
+  color: var(--fg-muted);
+}
+
+.cl a {
+  color: var(--accent);
+}
+
+.cl code {
+  padding: 1px 5px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface-2);
+  font-size: 0.88em;
+}
+
+.cl-quote {
+  margin: 0 0 18px;
+  padding: 11px 14px;
+  border: 1px solid var(--warning);
+  border-radius: var(--radius);
+  background: var(--warning-soft);
+  color: var(--warning);
+  font-size: 13.5px;
+}
+
+.cl-quote a {
+  color: inherit;
+}
+
+.cl-version {
+  display: flex;
+  align-items: baseline;
+  gap: 11px;
+  margin: 34px 0 4px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.cl-version-tag {
+  padding: 3px 11px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 680;
+  letter-spacing: -0.01em;
+}
+
+.cl-version-date {
+  color: var(--fg-subtle);
+  font-size: 13px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.cl-section {
+  margin: 20px 0 8px;
+  color: var(--fg-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cl-section.is-added {
+  color: var(--success);
+}
+
+.cl-section.is-changed {
+  color: var(--info);
+}
+
+.cl-section.is-fixed {
+  color: var(--danger);
+}
+
+.cl-section.is-removed,
+.cl-section.is-deprecated {
+  color: var(--warning);
+}
+
+.cl-section.is-security {
+  color: var(--accent);
+}
+
+.cl-list {
+  margin: 0 0 14px;
+  padding: 0;
+  color: var(--fg-muted);
+  list-style: none;
+}
+
+.cl-list li {
+  position: relative;
+  margin-bottom: 6px;
+  padding-left: 17px;
+  line-height: 1.6;
+}
+
+.cl-list li::before {
+  position: absolute;
+  left: 3px;
+  color: var(--fg-subtle);
+  content: '•';
+}
+
+.cl-list li.is-nested {
+  margin-left: 20px;
+  font-size: 13px;
+}
+
+.cl-list li.is-nested::before {
+  content: '–';
+}
+
+.cl-list strong {
+  color: var(--fg);
+}
+
+@media (max-width: 900px) {
+  .cl {
+    padding: 20px 16px 60px;
+  }
+}
+
+/* ==========================================================================
    Combobox (bộ lọc gõ-để-tìm)
    ========================================================================== */
 .combo {

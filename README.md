@@ -45,6 +45,8 @@ npm run lint
 - **Hai bộ lọc** (nhóm, nền tảng) đều là combobox gõ-để-tìm, có ↑ ↓ Enter Esc.
 - **Link chia sẻ**: mỗi component có URL riêng dạng `#/<id>`, ví dụ
   http://localhost:5179/#/bottom-sheet — dán vào chat là người kia mở đúng mục.
+- **Nhật ký thay đổi** (`#/changelog`) hiển thị ngay trong app, đọc thẳng từ
+  `CHANGELOG.md` lúc build — sửa file đó là trang trong app đổi theo.
 - **Nút ☾ / ☀** ở góc phải đổi sáng/tối, dùng để kiểm tra component ở cả hai chế độ.
 
 ## Quy trình phát hành
@@ -102,6 +104,7 @@ src/
     Combobox.tsx         Dropdown gõ-để-tìm dùng cho bộ lọc
     PhoneFrame.tsx       Khung điện thoại bọc demo mobile
     HomePage.tsx         Trang chủ: lưới thẻ demo sống của toàn bộ component
+    ChangelogPage.tsx    Hiển thị CHANGELOG.md trong app (parser markdown tối giản)
     EntryDetail.tsx      Trang chi tiết một component
   App.tsx                Shell: header + sidebar lọc + main
   index.css              Design token + shell + thư viện primitive `.d-*` cho demo

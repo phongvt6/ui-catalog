@@ -25,7 +25,17 @@ Nhóm thay đổi dùng đúng 6 nhãn sau: **Thêm mới** (tính năng mới) 
   - Trang chủ tôn trọng bộ lọc và ô tìm kiếm ở sidebar.
   - Demo chỉ dựng khi thẻ lọt vào tầm nhìn (`IntersectionObserver`) — tránh
     chạy 80 demo và hàng loạt `setInterval` cùng lúc.
-- Mục **Trang chủ** ở đầu sidebar; logo trên header bấm được để về trang chủ.
+- **Trang Nhật ký thay đổi ngay trong app** (`#/changelog`) — mọi người theo dõi
+  app có gì mới mà không cần mở repo. Trang này **đọc thẳng `CHANGELOG.md`**
+  (`?raw` lúc build) nên không có nguy cơ lệch nội dung: hook `pre-push` kiểm
+  tra đúng file mà trang hiển thị.
+  - Kèm bộ dựng markdown tối giản, chỉ hỗ trợ đúng cú pháp file này dùng
+    (tiêu đề, gạch đầu dòng 2 cấp, trích dẫn, đậm/nghiêng/code/link) — không
+    phải thêm thư viện markdown nào.
+  - Nhãn nhóm thay đổi được tô màu theo mức độ: Thêm mới xanh lá, Thay đổi xanh
+    dương, Sửa lỗi đỏ…
+- Mục **Trang chủ** và **Nhật ký thay đổi** ở đầu sidebar; logo trên header bấm
+  được để về trang chủ.
 - `src/lib/clipboard.ts` — hàm `copyText` dùng chung.
 
 ### Thay đổi
