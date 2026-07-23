@@ -16,6 +16,26 @@ Nhóm thay đổi dùng đúng 6 nhãn sau: **Thêm mới** (tính năng mới) 
 
 ### Thêm mới
 
+- **9 component nhóm ảnh** (`src/data/gallery.tsx`) — bổ sung vào nhóm *Media &
+  tệp*, nâng thư viện từ 80 lên **89 mục**. Mỗi mục là demo chạy thật, ảnh minh
+  hoạ vẽ bằng gradient + SVG nên không phụ thuộc mạng:
+  - **Lightbox / Image Viewer** — mở ảnh lớn trên lớp phủ, có ‹ ›, số thứ tự,
+    đóng bằng Esc / ✕ / bấm ra nền.
+  - **Image Gallery / Photo Grid** — lưới thumbnail vuông, ô cuối “+N” bấm để
+    xem toàn bộ.
+  - **Photo Slideshow / Thumbnail Strip** — ảnh lớn + dải thumbnail cuộn ngang,
+    có nút tự chạy.
+  - **Image Comparison Slider** — thanh kéo so sánh ảnh trước/sau, điều khiển
+    bằng `<input type="range">` nên dùng được bàn phím.
+  - **Zoom & Pan Viewer** — phóng to bằng nút/thanh trượt rồi kéo xem, có chặn
+    biên để ảnh không trôi khỏi khung.
+  - **Image Cropper** — khung cắt khoá tỷ lệ 1:1 / 4:3 / 16:9, lưới ba phần,
+    kéo và phóng để chọn phần giữ lại.
+  - **Masonry Gallery** — lưới so le giữ đúng tỷ lệ gốc từng ảnh.
+  - **Image Picker with Preview** — xem trước ảnh đã chọn, bỏ ảnh, đổi thứ tự
+    bằng nút ← →, đặt ảnh bìa.
+  - **Story / Fullscreen Photo Viewer** (mobile) — ảnh tự chuyển kèm dải thanh
+    tiến độ, chạm nửa trái/phải để lùi/tiến, có nút tạm dừng.
 - **Trang chủ dạng thư viện** (`#/`) — liệt kê toàn bộ 80 component thành lưới
   thẻ, gom theo 10 nhóm. Mỗi thẻ chứa **demo chạy thật, bấm/gõ được ngay tại
   chỗ** (không phải ảnh tĩnh), kèm tên Anh/Việt và link *Xem chi tiết*. Thẻ cố ý

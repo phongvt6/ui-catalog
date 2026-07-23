@@ -10,6 +10,7 @@ import { dataAdvancedEntries } from './dataAdvanced'
 import { overlayEntries } from './overlay'
 import { mediaMobileEntries } from './mediaMobile'
 import { mediaAdvancedEntries } from './mediaAdvanced'
+import { galleryEntries } from './gallery'
 
 export const CATALOG: CatalogEntry[] = [
   ...inputEntries,
@@ -23,6 +24,7 @@ export const CATALOG: CatalogEntry[] = [
   ...overlayEntries,
   ...mediaMobileEntries,
   ...mediaAdvancedEntries,
+  ...galleryEntries,
 ]
 
 const COMBINING = new RegExp('[\\u0300-\\u036f]', 'g')
