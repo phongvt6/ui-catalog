@@ -3,7 +3,7 @@
 **Bản đã triển khai: <https://ui-catalog-two.vercel.app>**
 
 Từ điển tra cứu **mọi chủng loại element / component** của một trang web và một
-app mobile — hiện có **89 mục, chia 10 nhóm**. Mỗi mục có đủ 4 phần cốt lõi +
+app mobile — hiện có **93 mục, chia 10 nhóm**. Mỗi mục có đủ 4 phần cốt lõi +
 3 phần bổ sung:
 
 | Phần | Nội dung |
@@ -36,7 +36,7 @@ npm run lint
 
 ## Cách dùng
 
-- **Trang chủ** (`#/`, hoặc bấm logo) là thư viện toàn bộ 89 component xếp thành
+- **Trang chủ** (`#/`, hoặc bấm logo) là thư viện toàn bộ 93 component xếp thành
   lưới thẻ theo nhóm. Mỗi thẻ là một **demo chạy thật** — bấm, gõ, kéo ngay trên
   trang chủ, không cần mở trang chi tiết. Thẻ chỉ có demo + tên; diễn giải, công
   dụng và đoạn code nằm ở trang chi tiết.
@@ -99,6 +99,7 @@ src/
     mediaMobile.tsx      Media & tệp + Đặc thù mobile
     mediaAdvanced.tsx    Video, bản đồ, thanh nút cố định đáy, hỏi quyền truy cập
     gallery.tsx          Xem ảnh: lightbox, gallery, slide ảnh, cắt/zoom ảnh, story
+    dataViz.tsx          Gantt, dòng thời gian, lưới thẻ, dải thẻ kéo ngang
   lib/
     clipboard.ts         copyText() — có phương án dự phòng khi clipboard bị chặn
   components/

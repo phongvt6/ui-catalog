@@ -11,6 +11,7 @@ import { overlayEntries } from './overlay'
 import { mediaMobileEntries } from './mediaMobile'
 import { mediaAdvancedEntries } from './mediaAdvanced'
 import { galleryEntries } from './gallery'
+import { dataVizEntries } from './dataViz'
 
 export const CATALOG: CatalogEntry[] = [
   ...inputEntries,
@@ -25,6 +26,7 @@ export const CATALOG: CatalogEntry[] = [
   ...mediaMobileEntries,
   ...mediaAdvancedEntries,
   ...galleryEntries,
+  ...dataVizEntries,
 ]
 
 const COMBINING = new RegExp('[\\u0300-\\u036f]', 'g')

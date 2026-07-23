@@ -18,12 +18,24 @@ Nhóm thay đổi dùng đúng 6 nhãn sau: **Thêm mới** (tính năng mới) 
 
 - **Tiêu đề nhóm ở sidebar nổi bật hơn** — mỗi nhóm giờ có dải nền riêng chạy
   hết bề ngang, đường kẻ phân cách và số lượng nằm trong chip tròn bên phải, nên
-  ranh giới giữa các nhóm nhìn ra ngay khi lướt danh sách 89 mục.
+  ranh giới giữa các nhóm nhìn ra ngay khi lướt danh sách gần trăm mục.
   - Tiêu đề **dính lại (sticky)** khi cuộn qua nhóm — luôn biết mình đang ở nhóm
     nào mà không phải cuộn ngược lên.
 
 ### Thêm mới
 
+- **4 component xem dữ liệu theo thời gian và theo thẻ** (`src/data/dataViz.tsx`)
+  — thư viện lên **93 mục**:
+  - **Gantt Chart** — thanh công việc trên trục 14 ngày, đường “hôm nay”, phần
+    tô theo % hoàn thành, bấm một việc để xem người phụ trách và việc nó phụ
+    thuộc.
+  - **Timeline View** (kiểu Notion) — bản ghi có ngày thành thanh trên trục thời
+    gian, gom theo làn người phụ trách, đổi mức **Ngày / Tuần / Tháng**; zoom xa
+    thì thanh bỏ nhãn, giữ màu và tooltip.
+  - **Gallery / Card View** — chế độ xem dạng lưới thẻ của một bảng dữ liệu, đổi
+    cỡ thẻ (2 ↔ 3 cột) và bật/tắt hiển thị thuộc tính.
+  - **Horizontal Card Rail** — dải thẻ kéo ngang có `scroll-snap`, nút ‹ › tự mờ
+    khi chạm đầu/cuối, vệt mờ ở mép và thanh chỉ vị trí.
 - **9 component nhóm ảnh** (`src/data/gallery.tsx`) — bổ sung vào nhóm *Media &
   tệp*, nâng thư viện từ 80 lên **89 mục**. Mỗi mục là demo chạy thật, ảnh minh
   hoạ vẽ bằng gradient + SVG nên không phụ thuộc mạng:
