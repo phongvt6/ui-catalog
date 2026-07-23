@@ -1426,13 +1426,25 @@
 }
 
 /* --- Dashboard theo phễu -------------------------------------------------- */
+/* Băng ở trên và bảng ở dưới phải thẳng cột: cả hai cùng đọc --fb-head (bề
+   rộng cột "Kênh") và chia đều phần còn lại cho 4 giai đoạn. Khe 8px giữa các
+   băng làm bằng margin — margin không ăn vào track, nên track vẫn khớp cột
+   bảng, còn khối màu nhìn thấy được thì khớp với ô tiêu đề nhóm (ô đó cũng
+   chừa 4px mỗi bên). */
+.chart-scope .fb-align {
+  --fb-head: 132px;
+  /* Đủ cho tiêu đề dài nhất ("Lượt hiển thị") không bị cắt; hẹp hơn thì cả hai
+     tầng cùng cuộn ngang, chứ không tầng nào tự co lại lệch khỏi tầng kia. */
+  min-width: 820px;
+}
+
 .chart-scope .fb-bands {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  grid-template-columns: var(--fb-head) repeat(4, 1fr);
 }
 
 .chart-scope .fb-band {
+  margin: 0 4px;
   padding: 10px 12px;
   border: 1px solid transparent;
   border-radius: 10px;
@@ -1482,22 +1494,49 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Tiêu đề nhóm gộp: nền tint của băng, kẻ dọc tách nhóm. */
+/* Bề rộng cột khoá cứng theo lưới băng, không để nội dung tự kéo co. */
+.chart-scope .fb-table {
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.chart-scope .fb-col-head {
+  width: var(--fb-head);
+}
+
+/* Hai cột trong một nhóm chia đôi track của băng. */
+.chart-scope .fb-col-bar,
+.chart-scope .fb-col-num {
+  width: calc((100% - var(--fb-head)) / 8);
+}
+
+/* Tiêu đề nhóm gộp: nền tint của băng, chừa đúng 4px mỗi bên như khe giữa
+   các băng ở trên — nhờ vậy khối màu trên và dưới rộng bằng nhau. */
 .chart-scope .fb-table .fb-group {
   text-align: center;
-  border-left: 2px solid var(--surface);
-  border-right: 2px solid var(--surface);
+  border-left: 4px solid var(--surface);
+  border-right: 4px solid var(--surface);
   border-radius: 6px 6px 0 0;
 }
 
 .chart-scope .fb-table th,
 .chart-scope .fb-table td {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Hàng tiêu đề con được phép xuống dòng — cột đã khoá cứng, thà hai dòng chữ
+   còn hơn cắt cụt tên chỉ số. */
+.chart-scope .fb-table thead tr + tr th {
+  white-space: normal;
+}
+
+/* Cột thanh không còn tự đặt bề rộng — colgroup quyết định. */
 .chart-scope .fb-table .tbl-barcol {
-  width: 90px;
-  min-width: 90px;
+  width: auto;
+  min-width: 0;
 }
 
 /* --- Panel lặp ------------------------------------------------------------ */
@@ -1840,7 +1879,6 @@
 }
 
 @media (max-width: 900px) {
-.chart-scope .fb-bands,
 .chart-scope .rp-grid {
     grid-template-columns: 1fr;
   }

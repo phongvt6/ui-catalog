@@ -232,109 +232,123 @@ function FunnelBandsDemo() {
 
   return (
     <div className="cx">
-      <div className="fb-bands">
-        {BANDS.map((b, i) => (
-          <section
-            key={b.id}
-            className="fb-band"
-            style={{ background: tint(b.slot), borderColor: c.border }}
-          >
-            <h5 style={{ color: SERIES[mode][b.slot] }}>
-              {b.title}
-              {i < BANDS.length - 1 && (
-                <span className="fb-arrow" style={{ color: c.inkMuted }} aria-hidden>
-                  →
-                </span>
-              )}
-            </h5>
-            <p className="fb-q" style={{ color: c.inkMuted }}>
-              {b.question}
-            </p>
-            <div className="fb-kpis">
-              {b.kpis.map((k) => {
-                const good = k.delta === undefined ? true : k.delta >= 0 === (k.upIsGood ?? true)
-                return (
-                  <div className="fb-kpi" key={k.label}>
-                    <span className="tile-label">{k.label}</span>
-                    <b>{k.value}</b>
-                    {k.delta !== undefined && (
-                      <i style={{ color: good ? c.deltaGood : c.deltaBad }}>
-                        {k.delta >= 0 ? '▲' : '▼'} {vnPercent(Math.abs(k.delta))}
-                      </i>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-            <BandChart band={b} />
-          </section>
-        ))}
-      </div>
-
-      {/* Bảng dưới dùng LẠI đúng bộ hue của băng — cột nào thuộc giai đoạn nào
-          là thấy ngay, không phải dò lại tiêu đề. */}
+      {/* Băng và bảng nằm CHUNG một khung cuộn và chung một lưới cột: mỗi băng
+          rộng đúng bằng cặp cột của nó ở bảng dưới, kể cả khi cuộn ngang. */}
       <div className="tbl-scroll">
-        <table className="dtable fb-table">
-          <thead>
-            <tr>
-              <th rowSpan={2}>Kênh</th>
-              {BANDS.map((b) => (
-                <th
-                  key={b.id}
-                  colSpan={2}
-                  className="fb-group"
-                  style={{ background: tint(b.slot), color: SERIES[mode][b.slot] }}
-                >
+        <div className="fb-align">
+          <div className="fb-bands">
+            {/* Ô trống khớp cột "Kênh" của bảng — thứ giữ hai tầng thẳng cột. */}
+            <div className="fb-rowhead-spacer" aria-hidden />
+            {BANDS.map((b, i) => (
+              <section
+                key={b.id}
+                className="fb-band"
+                style={{ background: tint(b.slot), borderColor: c.border }}
+              >
+                <h5 style={{ color: SERIES[mode][b.slot] }}>
                   {b.title}
-                </th>
-              ))}
-            </tr>
-            <tr>
-              <th className="tbl-barcol">Tỷ trọng</th>
-              <th className="num">Lượt hiển thị</th>
-              <th className="tbl-barcol">Tỷ trọng</th>
-              <th className="num">CTR</th>
-              <th className="tbl-barcol">Tỷ trọng</th>
-              <th className="num">Tỷ lệ CĐ</th>
-              <th className="tbl-barcol">Tỷ trọng</th>
-              <th className="num">Chi phí</th>
-            </tr>
-          </thead>
-          <tbody>
-            {channels.map((r) => (
-              <tr key={r.channel}>
-                <td>{r.channel}</td>
-                <td className="tbl-barcol">{bar(r.impressions, maxImpr, 0)}</td>
-                <td className="num">{vnCompact(r.impressions)}</td>
-                <td className="tbl-barcol">{bar(r.clicks, maxClicks, 1)}</td>
-                <td className="num" style={rateCell(r.ctr, maxCtr, 1)}>
-                  {vnPercent(r.ctr, 2)}
-                </td>
-                <td className="tbl-barcol">{bar(r.orders, maxOrders, 2)}</td>
-                <td className="num" style={rateCell(r.convRate, maxConv, 2)}>
-                  {vnPercent(r.convRate, 2)}
-                </td>
-                <td className="tbl-barcol">{bar(r.cost, maxCost, 3)}</td>
-                <td className="num">{vnCompact(r.cost)} ₫</td>
-              </tr>
+                  {i < BANDS.length - 1 && (
+                    <span className="fb-arrow" style={{ color: c.inkMuted }} aria-hidden>
+                      →
+                    </span>
+                  )}
+                </h5>
+                <p className="fb-q" style={{ color: c.inkMuted }}>
+                  {b.question}
+                </p>
+                <div className="fb-kpis">
+                  {b.kpis.map((k) => {
+                    const good = k.delta === undefined ? true : k.delta >= 0 === (k.upIsGood ?? true)
+                    return (
+                      <div className="fb-kpi" key={k.label}>
+                        <span className="tile-label">{k.label}</span>
+                        <b>{k.value}</b>
+                        {k.delta !== undefined && (
+                          <i style={{ color: good ? c.deltaGood : c.deltaBad }}>
+                            {k.delta >= 0 ? '▲' : '▼'} {vnPercent(Math.abs(k.delta))}
+                          </i>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+                <BandChart band={b} />
+              </section>
             ))}
-          </tbody>
-          <tfoot>
-            <tr className="tbl-total-row">
-              <th scope="row" className="tbl-rowhead">
-                Tổng
-              </th>
-              <td className="tbl-barcol" />
-              <td className="num">{vnCompact(totals.impressions)}</td>
-              <td className="tbl-barcol" />
-              <td className="num">{vnPercent(adFunnel.ctr, 2)}</td>
-              <td className="tbl-barcol" />
-              <td className="num">{vnPercent(adFunnel.convRate, 2)}</td>
-              <td className="tbl-barcol" />
-              <td className="num">{vnCompact(totals.cost)} ₫</td>
-            </tr>
-          </tfoot>
-        </table>
+          </div>
+
+          {/* Bảng dưới dùng LẠI đúng bộ hue của băng — cột nào thuộc giai đoạn
+              nào là thấy ngay, không phải dò lại tiêu đề. */}
+          <table className="dtable fb-table">
+            {/* Bề rộng cột cố định = bề rộng track của lưới băng ở trên. */}
+            <colgroup>
+              <col className="fb-col-head" />
+              {BANDS.flatMap((b) => [
+                <col key={`${b.id}-bar`} className="fb-col-bar" />,
+                <col key={`${b.id}-num`} className="fb-col-num" />,
+              ])}
+            </colgroup>
+            <thead>
+              <tr>
+                <th rowSpan={2}>Kênh</th>
+                {BANDS.map((b) => (
+                  <th
+                    key={b.id}
+                    colSpan={2}
+                    className="fb-group"
+                    style={{ background: tint(b.slot), color: SERIES[mode][b.slot] }}
+                  >
+                    {b.title}
+                  </th>
+                ))}
+              </tr>
+              <tr>
+                <th className="tbl-barcol">Tỷ trọng</th>
+                <th className="num">Lượt hiển thị</th>
+                <th className="tbl-barcol">Tỷ trọng</th>
+                <th className="num">CTR</th>
+                <th className="tbl-barcol">Tỷ trọng</th>
+                <th className="num">Tỷ lệ CĐ</th>
+                <th className="tbl-barcol">Tỷ trọng</th>
+                <th className="num">Chi phí</th>
+              </tr>
+            </thead>
+            <tbody>
+              {channels.map((r) => (
+                <tr key={r.channel}>
+                  <td>{r.channel}</td>
+                  <td className="tbl-barcol">{bar(r.impressions, maxImpr, 0)}</td>
+                  <td className="num">{vnCompact(r.impressions)}</td>
+                  <td className="tbl-barcol">{bar(r.clicks, maxClicks, 1)}</td>
+                  <td className="num" style={rateCell(r.ctr, maxCtr, 1)}>
+                    {vnPercent(r.ctr, 2)}
+                  </td>
+                  <td className="tbl-barcol">{bar(r.orders, maxOrders, 2)}</td>
+                  <td className="num" style={rateCell(r.convRate, maxConv, 2)}>
+                    {vnPercent(r.convRate, 2)}
+                  </td>
+                  <td className="tbl-barcol">{bar(r.cost, maxCost, 3)}</td>
+                  <td className="num">{vnCompact(r.cost)} ₫</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr className="tbl-total-row">
+                <th scope="row" className="tbl-rowhead">
+                  Tổng
+                </th>
+                <td className="tbl-barcol" />
+                <td className="num">{vnCompact(totals.impressions)}</td>
+                <td className="tbl-barcol" />
+                <td className="num">{vnPercent(adFunnel.ctr, 2)}</td>
+                <td className="tbl-barcol" />
+                <td className="num">{vnPercent(adFunnel.convRate, 2)}</td>
+                <td className="tbl-barcol" />
+                <td className="num">{vnCompact(totals.cost)} ₫</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
   )
@@ -870,7 +884,7 @@ export const compositeEntries: ChartEntry[] = [
     variants: [
       'Mũi tên giữa các băng để nhấn thứ tự đọc trái → phải.',
       'Băng cuối là “chi phí/hiệu quả” — nơi tăng là xấu, nên mũi tên delta đổi chiều nghĩa.',
-      'Trên mobile: các băng xếp dọc, giữ nguyên thứ tự.',
+      'Trên màn hẹp: băng và bảng cuộn ngang CÙNG NHAU để không mất thế thẳng cột; nếu buộc phải xếp dọc thì giữ nguyên thứ tự.',
     ],
     seriesCap: '4 băng; mỗi băng 2–3 KPI và tối đa 2 dải biểu đồ.',
     demo: () => <FunnelBandsDemo />,
@@ -893,6 +907,19 @@ series: [
   { type: 'line', xAxisIndex: 0, yAxisIndex: 0, data: rate },
   { type: 'bar',  xAxisIndex: 1, yAxisIndex: 1, data: volume },
 ]
+
+// Băng và bảng CHUNG một lưới cột, nếu không hai tầng sẽ lệch nhau đúng
+// bằng bề rộng cột nhãn.
+.fb-align { --fb-head: 132px }                                  /* cột "Kênh" */
+.fb-bands { display: grid; grid-template-columns: var(--fb-head) repeat(4, 1fr) }
+.fb-band  { margin: 0 4px }              /* khe bằng margin → track vẫn khớp */
+.fb-table { table-layout: fixed }
+.fb-col-bar, .fb-col-num { width: calc((100% - var(--fb-head)) / 8) }
+
+<div className="fb-bands">
+  <div className="fb-rowhead-spacer" aria-hidden />   {/* ô trống khớp cột nhãn */}
+  {BANDS.map((b) => <section className="fb-band">…</section>)}
+</div>
 
 // Bảng: tiêu đề nhóm gộp bằng colSpan, tô đúng tint của băng.
 <th colSpan={2} style={{ background: tint(b.slot), color: SERIES[mode][b.slot] }}>{b.title}</th>`,

@@ -14,6 +14,15 @@ Nhóm thay đổi dùng đúng 6 nhãn sau: **Thêm mới** (tính năng mới) 
 
 ## [Chưa phát hành]
 
+### Sửa lỗi
+
+- **Dashboard theo phễu: băng trên và bảng dưới giờ thẳng cột.** Dải băng là
+  lưới 4 cột trải hết bề ngang, còn bảng có thêm cột nhãn “Kênh” ở đầu — nên
+  mỗi nhóm cột lệch khỏi băng của nó đúng bằng bề rộng cột nhãn, phá đúng cái
+  mà mẫu này dựa vào. Hai tầng nay dùng chung một lưới (`--fb-head` + 4 track
+  bằng nhau), chung một khung cuộn ngang, khe giữa băng làm bằng `margin` để
+  không ăn vào track; tiêu đề con được xuống dòng thay vì bị cắt cụt.
+
 ### Thay đổi
 
 - **Tên app thành “Từ điển UI / Chart”** cho đúng phạm vi sau khi gộp; logo mới
