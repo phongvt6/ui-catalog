@@ -8,6 +8,7 @@ import type { CategoryId } from '../types'
 export type Route =
   | { kind: 'home' }
   | { kind: 'changelog' }
+  | { kind: 'new' }
   | { kind: 'category'; id: CategoryId }
   | { kind: 'entry'; id: string }
 
@@ -15,6 +16,7 @@ export function parseHash(hash: string): Route {
   const h = decodeURIComponent(hash.replace(/^#\/?/, ''))
   if (h === '') return { kind: 'home' }
   if (h === 'changelog') return { kind: 'changelog' }
+  if (h === 'moi') return { kind: 'new' }
   if (h.startsWith('nhom/')) return { kind: 'category', id: h.slice(5) as CategoryId }
   return { kind: 'entry', id: h }
 }
@@ -25,6 +27,8 @@ export function hrefOf(route: Route): string {
       return '#/'
     case 'changelog':
       return '#/changelog'
+    case 'new':
+      return '#/moi'
     case 'category':
       return `#/nhom/${route.id}`
     case 'entry':

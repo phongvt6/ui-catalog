@@ -52,6 +52,8 @@ npm run lint
   tự thoát khỏi kết quả tìm kiếm.
 - **Link chia sẻ**: mỗi component có URL riêng dạng `#/<id>`, ví dụ
   http://localhost:5179/#/bottom-sheet — dán vào chat là người kia mở đúng mục.
+- **Mới cập nhật** (`#/moi`) liệt kê các đợt bổ sung component, mới nhất trước —
+  kèm ngày và số mục. Component thuộc đợt mới nhất có nhãn *Mới* trên thẻ.
 - **Nhật ký thay đổi** (`#/changelog`) hiển thị ngay trong app, đọc thẳng từ
   `CHANGELOG.md` lúc build — sửa file đó là trang trong app đổi theo.
 - **Nút ☾ / ☀** ở góc phải đổi sáng/tối, dùng để kiểm tra component ở cả hai chế độ.

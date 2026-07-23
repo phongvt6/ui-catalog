@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CatalogEntry } from '../types'
+import { LATEST_RELEASE } from '../types'
 import { hrefOf } from '../lib/route'
 
 /**
@@ -53,7 +54,10 @@ export function EntryCard({ entry }: { entry: CatalogEntry }) {
     <article className="hp-card">
       <LazyStage entry={entry} />
       <div className="hp-card-body">
-        <h3 className="hp-card-title">{entry.nameEn}</h3>
+        <h3 className="hp-card-title">
+          {entry.nameEn}
+          {entry.since === LATEST_RELEASE.version && <span className="new-dot">Mới</span>}
+        </h3>
         <p className="hp-card-vi">{entry.nameVi}</p>
       </div>
       <footer className="hp-card-foot">

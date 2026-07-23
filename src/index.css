@@ -243,6 +243,15 @@ pre {
   font-weight: 400;
 }
 
+/* Số mục vừa thêm ở đợt mới nhất — nổi hơn số đếm nhóm thường */
+.nav-count.is-new {
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-weight: 600;
+}
+
 .nav-sep {
   height: 1px;
   margin: 9px 11px;
@@ -704,6 +713,11 @@ pre {
   font-weight: 400;
 }
 
+.hp-group-head p em {
+  color: var(--fg-subtle);
+  font-style: normal;
+}
+
 .hp-group-head p {
   margin: 2px 0 0;
   color: var(--fg-muted);
@@ -783,6 +797,19 @@ pre {
   font-size: 15px;
   font-weight: 640;
   letter-spacing: -0.01em;
+}
+
+/* Nhãn “Mới” trên thẻ của component vừa được thêm */
+.new-dot {
+  margin-left: 7px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+  vertical-align: middle;
 }
 
 .hp-card-vi {
@@ -1373,7 +1400,16 @@ pre {
     flex: 0 0 auto;
   }
 
-  .nav-sep {
+  /* Số mục vừa thêm ở đợt mới nhất — nổi hơn số đếm nhóm thường */
+.nav-count.is-new {
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-weight: 600;
+}
+
+.nav-sep {
     display: none;
   }
 

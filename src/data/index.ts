@@ -13,20 +13,24 @@ import { mediaAdvancedEntries } from './mediaAdvanced'
 import { galleryEntries } from './gallery'
 import { dataVizEntries } from './dataViz'
 
+/** Đánh dấu đợt bổ sung cho cả lô; entry tự khai `since` thì giữ nguyên. */
+const since = (list: CatalogEntry[], version: string): CatalogEntry[] =>
+  list.map((e) => ({ ...e, since: e.since ?? version }))
+
 export const CATALOG: CatalogEntry[] = [
-  ...inputEntries,
-  ...inputsAdvancedEntries,
-  ...actionEntries,
-  ...actionsAdvancedEntries,
-  ...feedbackEntries,
-  ...feedbackAdvancedEntries,
-  ...dataEntries,
-  ...dataAdvancedEntries,
-  ...overlayEntries,
-  ...mediaMobileEntries,
-  ...mediaAdvancedEntries,
-  ...galleryEntries,
-  ...dataVizEntries,
+  ...since(inputEntries, '0.1.0'),
+  ...since(inputsAdvancedEntries, '0.2.0'),
+  ...since(actionEntries, '0.1.0'),
+  ...since(actionsAdvancedEntries, '0.2.0'),
+  ...since(feedbackEntries, '0.1.0'),
+  ...since(feedbackAdvancedEntries, '0.2.0'),
+  ...since(dataEntries, '0.1.0'),
+  ...since(dataAdvancedEntries, '0.2.0'),
+  ...since(overlayEntries, '0.1.0'),
+  ...since(mediaMobileEntries, '0.1.0'),
+  ...since(mediaAdvancedEntries, '0.2.0'),
+  ...since(galleryEntries, '0.4.0'),
+  ...since(dataVizEntries, '0.4.0'),
 ]
 
 const COMBINING = new RegExp('[\\u0300-\\u036f]', 'g')

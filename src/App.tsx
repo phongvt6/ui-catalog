@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { CATALOG, deaccent } from './data'
-import { CATEGORIES } from './types'
+import { CATEGORIES, LATEST_RELEASE } from './types'
 import { EntryDetail } from './components/EntryDetail'
 import { HomePage } from './components/HomePage'
 import { CategoryPage } from './components/CategoryPage'
 import { SearchPage } from './components/SearchPage'
 import { ChangelogPage } from './components/ChangelogPage'
+import { NewPage } from './components/NewPage'
 import { hrefOf, useRoute } from './lib/route'
 
 type Theme = 'light' | 'dark'
@@ -47,6 +48,7 @@ export default function App() {
     route.kind === 'category' ? CATEGORIES.find((c) => c.id === route.id) : undefined
 
   const countOf = (id: string) => CATALOG.filter((e) => e.category === id).length
+  const newCount = CATALOG.filter((e) => e.since === LATEST_RELEASE.version).length
 
   return (
     <div className="app">
@@ -105,6 +107,13 @@ export default function App() {
           <div className="nav-sep" />
 
           <a
+            className={!searching && route.kind === 'new' ? 'nav-item is-active' : 'nav-item'}
+            href={hrefOf({ kind: 'new' })}
+          >
+            Mới cập nhật
+            <span className="nav-count is-new">{newCount}</span>
+          </a>
+          <a
             className={!searching && route.kind === 'changelog' ? 'nav-item is-active' : 'nav-item'}
             href={hrefOf({ kind: 'changelog' })}
           >
@@ -118,6 +127,8 @@ export default function App() {
           <SearchPage query={query.trim()} results={results} onClear={() => setQuery('')} />
         ) : route.kind === 'changelog' ? (
           <ChangelogPage />
+        ) : route.kind === 'new' ? (
+          <NewPage entries={CATALOG} />
         ) : category ? (
           <CategoryPage
             category={category}

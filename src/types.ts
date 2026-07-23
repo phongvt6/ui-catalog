@@ -53,7 +53,44 @@ export interface CatalogEntry {
   mobileDemo?: () => ReactNode
   /** Đoạn code minh hoạ để copy */
   code: string
+  /**
+   * Phiên bản mà mục này xuất hiện lần đầu. Gán theo lô ở `data/index.ts`,
+   * entry nào tự khai thì giữ giá trị của nó.
+   */
+  since?: string
 }
+
+/** Các đợt bổ sung component — dùng cho trang “Mới cập nhật”. */
+export interface Release {
+  version: string
+  date: string
+  /** Mô tả ngắn đợt bổ sung này */
+  note: string
+  /** Chưa cắt phiên bản, còn nằm ở mục [Chưa phát hành] của CHANGELOG */
+  unreleased?: boolean
+}
+
+/** Mới nhất xếp trước. */
+export const RELEASES: Release[] = [
+  {
+    version: '0.4.0',
+    date: '2026-07-23',
+    note: 'Nhóm ảnh (lightbox, gallery, slide, cắt/zoom) và 4 kiểu xem dữ liệu theo thời gian, theo thẻ.',
+    unreleased: true,
+  },
+  {
+    version: '0.2.0',
+    date: '2026-07-22',
+    note: 'Đợt bổ sung 20 mục nâng cao: OTP, ⌘K, Kanban, lịch tháng, video, bản đồ…',
+  },
+  {
+    version: '0.1.0',
+    date: '2026-07-22',
+    note: 'Bản đầu tiên: 60 component cơ bản, chia 10 nhóm.',
+  },
+]
+
+export const LATEST_RELEASE = RELEASES[0]
 
 export const CATEGORIES: Category[] = [
   {

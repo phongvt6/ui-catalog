@@ -43,6 +43,13 @@ Nhóm thay đổi dùng đúng 6 nhãn sau: **Thêm mới** (tính năng mới) 
 
 ### Thêm mới
 
+- **Trang “Mới cập nhật”** (`#/moi`) — xem nhanh đợt nào vừa thêm những gì, xếp
+  mới nhất trước, mỗi đợt kèm ngày, số mục và các nhóm bị ảnh hưởng. Trước đây
+  muốn biết có gì mới phải đọc changelog rồi tự đi tìm từng mục.
+  - Mỗi entry mang trường `since` (phiên bản xuất hiện lần đầu), gán theo lô ở
+    `src/data/index.ts` nên thêm mục mới không phải sửa từng entry.
+  - Thẻ của component thuộc đợt mới nhất có nhãn **Mới**; sidebar hiện số lượng
+    trong chip màu nhấn.
 - **4 component xem dữ liệu theo thời gian và theo thẻ** (`src/data/dataViz.tsx`)
   — thư viện lên **93 mục**:
   - **Gantt Chart** — thanh công việc trên trục 14 ngày, đường “hôm nay”, phần
