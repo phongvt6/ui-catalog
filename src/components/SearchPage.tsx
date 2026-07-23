@@ -5,33 +5,36 @@ import { EntryCard } from './EntryCard'
 interface Props {
   query: string
   results: CatalogEntry[]
+  /** Số biểu đồ khớp — hiện ở dòng tóm tắt, phần lưới do khu Biểu đồ tự dựng. */
+  chartCount: number
   onClear: () => void
 }
 
 /** Gõ vào ô tìm kiếm thì cả khung nội dung thành trang kết quả. */
-export function SearchPage({ query, results, onClear }: Props) {
+export function SearchPage({ query, results, chartCount, onClear }: Props) {
   const groups = CATEGORIES.map((c) => ({
     category: c,
     items: results.filter((e) => e.category === c.id),
   })).filter((g) => g.items.length > 0)
 
   return (
-    <div className="page">
+    <>
       <header className="page-head">
         <h1>Kết quả cho “{query}”</h1>
         <p className="page-lede">
-          {results.length} component khớp
-          {groups.length > 0 && ` · ${groups.length} nhóm`}.{' '}
+          {results.length} component · {chartCount} biểu đồ khớp.{' '}
           <button type="button" className="link-btn" onClick={onClear}>
             Xoá tìm kiếm
           </button>
         </p>
       </header>
 
-      {results.length === 0 ? (
+      {results.length > 0 && <h2 className="wn-h2">Component · {results.length} mục</h2>}
+
+      {results.length === 0 && chartCount === 0 ? (
         <div className="empty-state">
-          <strong>Không tìm thấy component nào</strong>
-          <span>Thử từ khoá khác — gõ không dấu cũng được, ví dụ “o nhap”, “xem anh”, “gantt”.</span>
+          <strong>Không tìm thấy gì</strong>
+          <span>Thử từ khoá khác — gõ không dấu cũng được, ví dụ “o nhap”, “xem anh”, “heatmap”.</span>
         </div>
       ) : (
         groups.map((g) => (
@@ -51,6 +54,6 @@ export function SearchPage({ query, results, onClear }: Props) {
           </section>
         ))
       )}
-    </div>
+    </>
   )
 }

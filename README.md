@@ -2,8 +2,15 @@
 
 **Bản đã triển khai: <https://ui-catalog-two.vercel.app>**
 
-Từ điển tra cứu **mọi chủng loại element / component** của một trang web và một
-app mobile — hiện có **93 mục, chia 10 nhóm**. Mỗi mục có đủ 4 phần cốt lõi +
+Từ điển tra cứu cho người làm sản phẩm, gồm **hai khu vực** dùng chung một app:
+
+- **Component** — mọi chủng loại element / component của web và app mobile:
+  **93 mục, chia 10 nhóm**.
+- **Biểu đồ** — thư viện chart phân loại theo *mục đích phân tích*: **56 mục**
+  (gộp từ app `chart-catalog`), kèm trang *Kiến thức về chart* và
+  *Nguyên tắc & bảng màu*.
+
+Phần dưới đây mô tả khu Component. Mỗi mục có đủ 4 phần cốt lõi +
 3 phần bổ sung:
 
 | Phần | Nội dung |
@@ -111,7 +118,14 @@ src/
     dataViz.tsx          Gantt, dòng thời gian, lưới thẻ, dải thẻ kéo ngang
   lib/
     clipboard.ts         copyText() — có phương án dự phòng khi clipboard bị chặn
-    route.ts             Router hash 3 cấp: home / nhóm / chi tiết / changelog
+    route.ts             Router hash cho cả hai khu vực
+  chart/                 KHU VỰC BIỂU ĐỒ (bê từ app chart-catalog)
+    ChartArea.tsx        Điểm vào, lazy-load; bọc mọi thứ trong .chart-scope
+    ChartPages.tsx       Trang tất cả / nhóm / chi tiết / nguyên tắc
+    chart.css            CSS đã được script đưa hết vào .chart-scope
+    entries/*.tsx        56 mục biểu đồ + demo ECharts
+    components/EChart    Wrapper ECharts, nạp thư viện theo yêu cầu
+    lib/theme.ts         Bảng màu series, đã kiểm định tương phản
   components/
     PhoneFrame.tsx       Khung điện thoại bọc demo mobile
     EntryCard.tsx        Thẻ demo (dựng lười khi lọt tầm nhìn) dùng chung 3 trang

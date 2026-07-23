@@ -149,6 +149,46 @@ pre {
   line-height: 1.2;
 }
 
+/* Hai khu vực của app: Component | Biểu đồ */
+.area-tabs {
+  display: flex;
+  gap: 2px;
+  margin-left: 6px;
+  padding: 2px;
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+.area-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 13px;
+  border-radius: 999px;
+  color: var(--fg-muted);
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.area-tab:hover {
+  color: var(--fg);
+}
+
+.area-tab.is-on {
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.area-tab span {
+  color: var(--fg-subtle);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+}
+
 /* Ô tìm kiếm nằm trên header: gõ vào là cả khung nội dung thành trang kết quả,
    nhờ vậy sidebar chỉ còn việc chuyển nhóm. */
 .head-search {
@@ -853,6 +893,14 @@ pre {
   .head-search {
     min-width: 0;
     margin-left: 0;
+  }
+
+  .area-tab {
+    padding: 4px 10px;
+  }
+
+  .area-tab span {
+    display: none;
   }
 }
 

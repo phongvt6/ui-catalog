@@ -25,4 +25,10 @@ export default tseslint.config(
       ],
     },
   },
+  {
+    // Khu vực Biểu đồ: demo được đặt ngay cạnh dữ liệu entry (giống các file
+    // src/data/*.tsx), nên cảnh báo fast-refresh ở đây là nhiễu.
+    files: ['src/chart/**/*.{ts,tsx}'],
+    rules: { 'react-refresh/only-export-components': 'off' },
+  },
 )

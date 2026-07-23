@@ -14,6 +14,24 @@ Nhóm thay đổi dùng đúng 6 nhãn sau: **Thêm mới** (tính năng mới) 
 
 ## [Chưa phát hành]
 
+### Thêm mới
+
+- **Gộp app chart-catalog vào đây — một app, hai khu vực.** Header có hai tab
+  *Component (93)* và *Biểu đồ (56)*; đổi tab là sidebar đổi luôn sang danh sách
+  nhóm của khu đó, nên mỗi lúc vẫn chỉ nhìn một danh sách ngắn.
+  - Đường dẫn khu Biểu đồ: `#/chart` (tất cả), `#/chart/nhom/<id>` (nhóm),
+    `#/chart/<id>` (chi tiết), `#/chart/kien-thuc`, `#/chart/nguyen-tac`.
+  - **Ô tìm kiếm tìm cả hai khu cùng lúc**, kết quả tách thành hai phần
+    *Component* và *Biểu đồ*.
+  - CSS của khu Biểu đồ được đưa hết vào `.chart-scope` bằng script, kể cả token
+    màu riêng (`--ink`, `--plane`, `--grid`…), nên hai khu không giẫm chân nhau
+    dù trùng tên class (`.card`, `.main`, `.badge`…).
+  - Nút sáng/tối dùng chung: đổi theme sẽ phát sự kiện để biểu đồ vẽ lại đúng
+    bảng màu của chế độ đó.
+  - **Bundle đầu không hề nặng thêm** (498 kB, trước khi gộp là 492 kB): ECharts
+    (~1 MB) và toàn bộ code demo biểu đồ chỉ tải khi mở khu Biểu đồ hoặc khi gõ
+    tìm kiếm.
+
 ### Thay đổi
 
 - **Bố cục tổng đổi sang 3 cấp: trang chủ → trang nhóm → trang chi tiết**, học
