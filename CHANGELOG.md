@@ -14,6 +14,18 @@ Nhóm thay đổi dùng đúng 6 nhãn sau: **Thêm mới** (tính năng mới) 
 
 ## [Chưa phát hành]
 
+### Thêm mới
+
+- **Sticky vs. Fixed Positioning** (nhóm *Bố cục*) — một khung cuộn, ba nút đổi
+  qua lại `static` / `sticky` / `fixed` để thấy đúng ba khác biệt: sticky vẫn
+  chiếm chỗ trong luồng, bị khối cha giữ lại (tiêu đề nhóm sau đẩy tiêu đề
+  trước ra); fixed ra khỏi luồng nên đè lên nội dung và neo theo viewport. Kèm
+  ba nguyên nhân “sticky không chạy” và cái bẫy `transform` làm hỏng `fixed`.
+- **Hover Card** (nhóm *Lớp phủ*) — thẻ xem nhanh sau @mention, có độ trễ mở
+  350ms / đóng 220ms, mở được bằng bàn phím và đóng bằng Esc, tự đổi hướng khi
+  gần mép. Ghi rõ đây là mẫu chỉ dành cho chuột: thiết bị cảm ứng phải có
+  đường đi khác.
+
 ### Sửa lỗi
 
 - **Dashboard theo phễu: băng trên và bảng dưới giờ thẳng cột.** Dải băng là

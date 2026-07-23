@@ -12,6 +12,7 @@ import { mediaMobileEntries } from './mediaMobile'
 import { mediaAdvancedEntries } from './mediaAdvanced'
 import { galleryEntries } from './gallery'
 import { dataVizEntries } from './dataViz'
+import { positioningEntries } from './positioning'
 
 /** Đánh dấu đợt bổ sung cho cả lô; entry tự khai `since` thì giữ nguyên. */
 const since = (list: CatalogEntry[], version: string): CatalogEntry[] =>
@@ -31,6 +32,7 @@ export const CATALOG: CatalogEntry[] = [
   ...since(mediaAdvancedEntries, '0.2.0'),
   ...since(galleryEntries, '0.4.0'),
   ...since(dataVizEntries, '0.4.0'),
+  ...since(positioningEntries, '0.4.0'),
 ]
 
 const COMBINING = new RegExp('[\\u0300-\\u036f]', 'g')

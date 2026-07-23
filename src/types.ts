@@ -75,7 +75,7 @@ export const RELEASES: Release[] = [
   {
     version: '0.4.0',
     date: '2026-07-23',
-    note: 'Nhóm ảnh (lightbox, gallery, slide, cắt/zoom) và 4 kiểu xem dữ liệu theo thời gian, theo thẻ.',
+    note: 'Nhóm ảnh (lightbox, gallery, slide, cắt/zoom), 4 kiểu xem dữ liệu theo thời gian và theo thẻ, cộng định vị dính/cố định và thẻ xem nhanh.',
     unreleased: true,
   },
   {
